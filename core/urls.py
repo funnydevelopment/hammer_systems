@@ -3,5 +3,7 @@ from core import views
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("api/user_auth/", views.UserCreateAPI.as_view()),
+    # path("api/user_auth/check_code/"),
+    # path("api/profile/"),
 ]
