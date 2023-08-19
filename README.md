@@ -70,13 +70,13 @@ Headers:
 Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
 ```json
 {
-  "invite_key": "key123"
+  "referral_link": "key123"
 }
 ```
 response
 ```json
 {
-  "auth_token_status": true
+  "referral_link": null
 }
 ```
 response_error_token
@@ -85,15 +85,15 @@ response_error_token
   "auth_token_status": false
 }
 ```
-response_error_invite_key_exist
+response_error_referral_link_exist
 ```json
 {
-  "invite_key_exist": true
+  "referral_link_exist": false
 }
 ```
 response_error_usage_once
 ```json
 {
-  "invite_key_was_used": true
+  "referral_link_was_used": true
 }
 ```

@@ -20,7 +20,6 @@ class User(models.Model):
     )
     invite_key = models.CharField(
         max_length=6,
-        unique=True,
         null=False,
         blank=False,
         verbose_name="Инвайт-код авторизации",

@@ -118,4 +118,24 @@ class UserProfileAPI(APIView):
 
     @staticmethod
     def post(request):
-        pass
+        serializer = serializers.UserInviteKeySerializer(data=request.data)
+        if serializer.is_valid():
+            inviter_qs = models.User.objects.filter(
+                invite_key=serializer.validated_data["invite_key"],
+            )
+            if inviter_qs.exists():
+                inviter = inviter_qs.first()
+                invitee = request.user.profile
+                if invitee.referral_link is None:
+                    invitee.referral_link = inviter.invite_code
+                    invitee.save()
+                    return Response(data={"referral_link": None})
+                return Response(
+                    data={"referral_link_was_used": True},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+            return Response(
+                data={"referral_link_exist": False},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return Response(data={"result": False}, status=status.HTTP_400_BAD_REQUEST)

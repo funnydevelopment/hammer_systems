@@ -12,3 +12,9 @@ class UserCheckCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = ["phone_number", "check_code"]
+
+
+class UserInviteKeySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ["invite_key"]
