@@ -3,7 +3,9 @@ from django.contrib.auth.models import User as Django_user
 
 
 class User(models.Model):
-    user = models.OneToOneField(Django_user, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        Django_user, on_delete=models.CASCADE, related_name="profile"
+    )
     phone_number = models.CharField(
         max_length=15,
         null=False,
@@ -17,7 +19,11 @@ class User(models.Model):
         verbose_name="Код авторизации пользователя",
     )
     invite_key = models.CharField(
-        max_length=6, null=False, blank=False, verbose_name="Инвайт-код авторизации"
+        max_length=6,
+        unique=True,
+        null=False,
+        blank=False,
+        verbose_name="Инвайт-код авторизации",
     )
     referral_link = models.CharField(
         max_length=6,
