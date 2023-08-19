@@ -5,6 +5,8 @@ import time
 from django.contrib.auth.models import User as Django_user
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -88,13 +90,31 @@ class UserCheckCodeAPI(APIView):
         )
 
 
+class CustomTokenAuthentication(TokenAuthentication):
+    def authenticate_credentials(self, key):
+        try:
+            return super().authenticate_credentials(key)
+        except AuthenticationFailed:
+            raise AuthenticationFailed({"auth_token_status": False})
+
+
 class UserProfileAPI(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [CustomTokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     @staticmethod
     def get(request):
-        print(request.user.profile)
-        return Response(data={"result": "ok"})
+        user = request.user.profile
+        invited_users = models.User.objects.filter(
+            referral_link=user.referral_link
+        ).all()
+        data = {
+            "auth_token_status": True,
+            "phone_number": user.phone_number,
+            "referral_link": user.referral_link,
+            "invited_users": invited_users,
+        }
+        return Response(data=data)
 
     @staticmethod
     def post(request):
