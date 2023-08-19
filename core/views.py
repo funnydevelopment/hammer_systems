@@ -2,7 +2,6 @@ import random
 import string
 import time
 
-from django.db.utils import IntegrityError
 from django.contrib.auth.models import User as Django_user
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
