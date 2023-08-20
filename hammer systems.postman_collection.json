@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "3402ee3e-2294-4323-b135-87e23c7f6a81",
+		"name": "hammer systems",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29228699"
+	},
+	"item": [
+		{
+			"name": "localhost:8000/api/user_auth/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"+79995002302\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/user_auth/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user_auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/user_auth/check_code/",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"+79995002302\",\n  \"check_code\": \"6151\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/user_auth/check_code/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user_auth",
+						"check_code",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/user_auth/check_code/",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"+79995002302\",\n  \"check_code\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/user_auth/check_code/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user_auth",
+						"check_code",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/api/profile/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token c0bdbf6e81c7a0ecad1eb7acbb5676c53ba2a54a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"referral_link\": \"i5l0ix\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/profile/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
