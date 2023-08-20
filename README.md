@@ -2,6 +2,24 @@
 
 ---
 Реализация простой реферальной системы. Реализовать логику и API.
+
+---
+## Шаги по настройке PostgreSQL для Django проекта
+1. **Установите PostgreSQL**: Если PostgreSQL еще не установлен на вашем компьютере, выполните установку в соответствии с документацией для вашей операционной системы.
+2. Обновите настройки Django: Откройте файл settings.py вашего Django проекта и обновите настройки базы данных:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_database_name',
+        'USER': 'your_username',
+        'PASSWORD': 'your_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
 ## Установка и запуск
 1. Склонируйте репозиторий: 
 `git clone git@github.com:funnydevelopment/hammer_systems.git`
@@ -18,9 +36,8 @@
 ---
 ## Эндпоинты API
 
----
 ### Авторизация пользователя
-**URL:** `/api/user_auth/`
+**URL:** `/api/user_auth/`  
 **Метод:** POST
 request
 ```json
@@ -37,7 +54,7 @@ response
 ```
 ---
 ### Получение кода авторизации
-**URL:** `/api/user_auth/check_code/`
+**URL:** `/api/user_auth/check_code/`  
 **Метод:** PATCH
 request
 ```json
@@ -61,7 +78,7 @@ response_error
 ```
 ---
 ### Список приглашенных пользователей
-**URL:** `/api/profile/`
+**URL:** `/api/profile/`  
 **Метод:** GET
 #### Headers:
 #### Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
@@ -90,7 +107,7 @@ response_error
 }
 ```
 ### Использование реферальной ссылки
-**URL:** `/api/profile/`
+**URL:** `/api/profile/`  
 **Метод:** POST
 #### Headers:
 #### Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
