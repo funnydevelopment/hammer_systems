@@ -1,7 +1,28 @@
 # Тестовое задание компании Hammer Systems
 
 ---
-### POST /api/user_auth/
+Реализация простой реферальной системы. Реализовать логику и API.
+## Установка и запуск
+1. Склонируйте репозиторий: 
+`git clone git@github.com:funnydevelopment/hammer_systems.git`
+2. Создайте и активируйте виртуальное окружение:
+`python3 -m venv venv`
+`source venv/bin/activate`
+3. Установите зависимости:
+`pip install -r requirements.txt`
+4. Примените миграции:
+`python3 manage.py makemigrations`
+`python3 manage.py migrate`
+5. Запустите сервер:
+`python3 manage.py runserver`
+
+---
+## Эндпоинты API
+
+---
+### Авторизация пользователя
+**URL:** `/api/user_auth/`
+**Метод:** POST
 request
 ```json
 {
@@ -16,7 +37,9 @@ response
 }
 ```
 ---
-### PATCH /api/user_auth/check_code/
+### Получение кода авторизации
+**URL:** `/api/user_auth/check_code/`
+**Метод:** PATCH
 request
 ```json
 {
@@ -38,9 +61,11 @@ response_error
 }
 ```
 ---
-### GET /api/profile/
-Headers:
-Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
+### Список приглашенных пользователей
+**URL:** `/api/profile/`
+**Метод:** GET
+#### Headers:
+#### Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
 response
 ```json
 {
@@ -65,9 +90,11 @@ response_error
   "auth_token_status": false
 }
 ```
-### POST /api/profile/
-Headers:
-Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
+### Использование реферальной ссылки
+**URL:** `/api/profile/`
+**Метод:** POST
+#### Headers:
+#### Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
 ```json
 {
   "referral_link": "key123"

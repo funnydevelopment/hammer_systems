@@ -8,6 +8,7 @@ class User(models.Model):
     )
     phone_number = models.CharField(
         max_length=15,
+        unique=True,
         null=False,
         blank=False,
         verbose_name="Номер телефона пользователя",
