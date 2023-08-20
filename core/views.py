@@ -20,10 +20,8 @@ def create_check_code() -> str:
 
 
 def create_invite_key() -> str:
-    key = ""
-    for i in range(3):
-        key += random.choice(list(string.ascii_lowercase))
-        key += random.choice(list(string.digits))
+    symbols = string.ascii_lowercase + string.digits
+    key = "".join(random.choice(symbols) for _ in range(6))
     key_is_exist = models.User.objects.filter(invite_key=key).exists()
     if key_is_exist:
         return create_invite_key()
@@ -108,11 +106,14 @@ class UserProfileAPI(APIView):
         invited_users = models.User.objects.filter(
             referral_link=user.referral_link
         ).all()
+
+        invited_users_serializer = serializers.UserSerializer(invited_users, many=True)
+
         data = {
             "auth_token_status": True,
             "phone_number": user.phone_number,
             "referral_link": user.referral_link,
-            "invited_users": invited_users,
+            "invited_users": invited_users_serializer.data,
         }
         return Response(data=data)
 

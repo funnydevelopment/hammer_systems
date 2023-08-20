@@ -14,6 +14,12 @@ class UserCheckCodeSerializer(serializers.ModelSerializer):
         fields = ["phone_number", "check_code"]
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ["phone_number", "referral_link"]
+
+
 class UserInviteKeySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.User
