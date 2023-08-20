@@ -11,7 +11,6 @@
 3. Установите зависимости:
 `pip install -r requirements.txt`
 4. Примените миграции:
-`python3 manage.py makemigrations`
 `python3 manage.py migrate`
 5. Запустите сервер:
 `python3 manage.py runserver`

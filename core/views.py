@@ -104,7 +104,7 @@ class UserProfileAPI(APIView):
     def get(request):
         user = request.user.profile
         invited_users = models.User.objects.filter(
-            referral_link=user.referral_link
+            referral_link=user.invite_key
         ).all()
 
         invited_users_serializer = serializers.UserSerializer(invited_users, many=True)
@@ -122,13 +122,13 @@ class UserProfileAPI(APIView):
         serializer = serializers.UserInviteKeySerializer(data=request.data)
         if serializer.is_valid():
             inviter_qs = models.User.objects.filter(
-                invite_key=serializer.validated_data["invite_key"],
+                invite_key=serializer.validated_data["referral_link"],
             )
             if inviter_qs.exists():
                 inviter = inviter_qs.first()
                 invitee = request.user.profile
                 if invitee.referral_link is None:
-                    invitee.referral_link = inviter.invite_code
+                    invitee.referral_link = inviter.invite_key
                     invitee.save()
                     return Response(data={"referral_link": None})
                 return Response(
@@ -139,4 +139,5 @@ class UserProfileAPI(APIView):
                 data={"referral_link_exist": False},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        print(serializer.errors)
         return Response(data={"result": False}, status=status.HTTP_400_BAD_REQUEST)
