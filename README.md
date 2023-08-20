@@ -51,7 +51,7 @@ response
   "check_code": "1234"
 }
 ```
----
+
 ### Получение кода авторизации
 **URL:** `/api/user_auth/check_code/`  
 **Метод:** PATCH
@@ -75,7 +75,7 @@ response_error
   "check_code_status": false
 }
 ```
----
+
 ### Список приглашенных пользователей
 **URL:** `/api/profile/`  
 **Метод:** GET
