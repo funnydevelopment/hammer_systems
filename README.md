@@ -37,14 +37,14 @@ DATABASES = {
 
 ### Авторизация пользователя
 **URL:** `/api/user_auth/`  
-**Метод:** POST
-request
+**Метод:** POST  
+Request - отправляем номер пользователя
 ```json
 {
   "phone_number": "+79995001122"
 }
 ```
-response
+Response - получаем код авторизации
 ```json
 {
   "result": true,
@@ -54,22 +54,22 @@ response
 
 ### Получение кода авторизации
 **URL:** `/api/user_auth/check_code/`  
-**Метод:** PATCH
-request
+**Метод:** PATCH  
+Request - отправляем код авторизации
 ```json
 {
   "phone_number": "+79995001122",
   "check_code": "1234"
 }
 ```
-response_ok
+Response - получаем токен, если код правильный, который используем дальше
 ```json
 {
   "check_code_status": true,
   "auth_token": "xvfghjjgfdsthtgdrgdhdgsergdg"
 }
 ```
-response_error
+Response - ответ, если код не совпал
 ```json
 {
   "check_code_status": false
@@ -81,7 +81,7 @@ response_error
 **Метод:** GET
 #### Headers:
 #### Authorization: "xvfghjjgfdsthtgdrgdhdgsergdg"
-response
+Response - получаем список приглашенных пользователей
 ```json
 {
   "auth_token_status": true,
@@ -99,7 +99,7 @@ response
   ]
 }
 ```
-response_error
+Response - ответ, если токен другой
 ```json
 {
   "auth_token_status": false
@@ -115,25 +115,25 @@ response_error
   "referral_link": "key123"
 }
 ```
-response
+Response - реферальная ссылка еще существует
 ```json
 {
   "referral_link": null
 }
 ```
-response_error_token
+Response - невалидный токен
 ```json
 {
   "auth_token_status": false
 }
 ```
-response_error_referral_link_exist
+Response - ответ, если реферальная ссылка уже существует
 ```json
 {
   "referral_link_exist": false
 }
 ```
-response_error_usage_once
+Response - ответ, если реферальная ссылка была использована ранее
 ```json
 {
   "referral_link_was_used": true
